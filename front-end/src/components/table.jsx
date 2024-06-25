@@ -4,14 +4,12 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { useNavigate } from 'react-router-dom';
 import CustomerData from '../../../customer_data.json';
+import '../styles/Table.css';
 
-// Create new GridExample component
 const CustomerTable = () => {
   const navigate = useNavigate();
-  // Row Data: The data to be displayed.
   const [rowData, setRowData] = useState(CustomerData);
 
-  // Column Definitions: Defines & controls grid columns.
   const [colDefs, setColDefs] = useState([
     { field: "name" },
     { field: "customerId" },
@@ -24,6 +22,9 @@ const CustomerTable = () => {
 
   const defaultColDef = {
     flex: 1,
+    sortable: true,
+    filter: true,
+    resizable: true,
   };
 
   const onRowClicked = (event) => {
@@ -32,11 +33,11 @@ const CustomerTable = () => {
   };
 
   return (
-    <div style={{ height: '500px', width: '100%', position: 'absolute' }}>
-      <div style={{ height: '50px', width: '100%', display: 'flex', alignItems: 'center' }}>
+    <div className="customer-table-container">
+      <div className="header-container">
         <h2>Bank Customers</h2>
       </div>
-      <div className="ag-theme-quartz" style={{ height: '100%' }}>
+      <div className="ag-theme-quartz">
         <AgGridReact
           rowData={rowData}
           columnDefs={colDefs}
