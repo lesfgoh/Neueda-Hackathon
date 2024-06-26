@@ -1,8 +1,9 @@
 package com.example.neueda_hackathon;
 
+import com.example.neueda_hackathon.CustomerData;
+import com.example.neueda_hackathon.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +29,14 @@ public class CustomerController {
     @PostMapping
     public CustomerData createCustomer(@RequestBody CustomerData customerData) throws IOException {
         return customerService.createCustomer(customerData);
+    }
+
+    @PostMapping("/CustomerList")
+    public List<CustomerData> createCustomers(@RequestBody List<CustomerData> customerData) throws IOException{
+        for (CustomerData customerData1 : customerData) {
+            customerService.createCustomer(customerData1);
+        }
+        return customerData;
     }
 
     @PutMapping("/{customerId}")
