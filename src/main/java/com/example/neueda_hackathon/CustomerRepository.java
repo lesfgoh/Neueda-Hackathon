@@ -9,4 +9,5 @@ import java.util.List;
 public interface CustomerRepository extends MongoRepository<CustomerData, String> {
     List<CustomerData> findByName(String lastName);
     CustomerData findByEmail(String email);
+    void deleteById(String id);
 }

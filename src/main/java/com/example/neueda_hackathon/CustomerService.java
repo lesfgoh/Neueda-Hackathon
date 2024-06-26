@@ -50,8 +50,9 @@ public class CustomerService {
     public boolean deleteCustomer(String customerId) throws IOException {
         List<CustomerData> customers = CustomerRepository.findAll();
         boolean removed = customers.removeIf(customer -> customer.getCustomerId().equals(customerId));
+        System.out.println(customers);
         if (removed) {
-            CustomerRepository.saveAll(customers);
+            CustomerRepository.deleteById(customerId);
         }
         return removed;
     }
