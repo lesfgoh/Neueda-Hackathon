@@ -1,8 +1,14 @@
 package com.example.neueda_hackathon;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
 import java.util.Objects;
 
+@Document(collection = "customers")
 public class CustomerData {
+    @Id
     private String customerId;
     private String name;
     private String status;

@@ -11,27 +11,27 @@ import java.util.Optional;
 public class CustomerService {
 
     @Autowired
-    private JsonFileUtil jsonFileUtil;
+    private CustomerRepository CustomerRepository;
 
     public List<CustomerData> getAllCustomers() throws IOException {
-        return jsonFileUtil.readCustomers();
+        return CustomerRepository.findAll();
     }
 
     public Optional<CustomerData> getCustomerById(String customerId) throws IOException {
-        return jsonFileUtil.readCustomers().stream()
+        return CustomerRepository.findAll().stream()
                 .filter(customer -> customer.getCustomerId().equals(customerId))
                 .findFirst();
     }
 
     public CustomerData createCustomer(CustomerData customerData) throws IOException {
-        List<CustomerData> customers = jsonFileUtil.readCustomers();
+        List<CustomerData> customers = CustomerRepository.findAll();
         customers.add(customerData);
-        jsonFileUtil.writeCustomers(customers);
+        CustomerRepository.saveAll(customers);
         return customerData;
     }
 
     public Optional<CustomerData> updateCustomer(String customerId, CustomerData updatedCustomerData) throws IOException {
-        List<CustomerData> customers = jsonFileUtil.readCustomers();
+        List<CustomerData> customers = CustomerRepository.findAll();
         for (CustomerData customer : customers) {
             if (customer.getCustomerId().equals(customerId)) {
                 customer.setName(updatedCustomerData.getName());
@@ -40,7 +40,7 @@ public class CustomerService {
                 customer.setEmail(updatedCustomerData.getEmail());
                 customer.setAge(updatedCustomerData.getAge());
                 customer.setPhoneNumber(updatedCustomerData.getPhoneNumber());
-                jsonFileUtil.writeCustomers(customers);
+                CustomerRepository.saveAll(customers);
                 return Optional.of(customer);
             }
         }
@@ -48,10 +48,10 @@ public class CustomerService {
     }
 
     public boolean deleteCustomer(String customerId) throws IOException {
-        List<CustomerData> customers = jsonFileUtil.readCustomers();
+        List<CustomerData> customers = CustomerRepository.findAll();
         boolean removed = customers.removeIf(customer -> customer.getCustomerId().equals(customerId));
         if (removed) {
-            jsonFileUtil.writeCustomers(customers);
+            CustomerRepository.saveAll(customers);
         }
         return removed;
     }
