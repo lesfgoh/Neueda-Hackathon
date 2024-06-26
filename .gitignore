@@ -1,3 +1,22 @@
+### react ###
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
+
+/front-end/dist/
+
+
+
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -49,3 +68,4 @@ target/
 .env
 
 /tmp/
+>>>>>>> main
