@@ -1,7 +1,7 @@
 # Neueda-Hackathon
-This is a maven springboot project with Spring Web and Spring JPA Repo dependencies for accessing a JSON file of customer data, editing the file, and deleting entries.
+This is a maven springboot project with Spring Web and Spring JPA Repo dependencies for accessing a MongoDB Database called neueda-hackathon containing customer data in the 'customers' collection. It provides a simple Swagger UI for making various commands.
 <br><br>
-Some redundant dependencies have been added, such as the in-memory h2 database.
+
 
 ## Getting Started
 1. Run the following command in the neueda-hackathon directory to run the backend Springboot application, Springboot will be running on port 8080
