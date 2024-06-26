@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { useNavigate } from 'react-router-dom';
-import CustomerData from '../../../customer_data.json';
 import '../styles/Table.css';
 
 const CustomerTable = () => {
   const navigate = useNavigate();
-  const [rowData, setRowData] = useState(CustomerData);
+  const [rowData, setRowData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/customers');
+        if (!response.ok) {
+          throw new Error('Response not ok');
+        }
+        const result = await response.json();
+        setRowData(result);
+      } catch (error) {
+        console.log('No data');
+      }
+    }
+    fetchData();
+  }, []);
 
   const [colDefs, setColDefs] = useState([
     { field: "name" },

@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import CustomerData from '../../../customer_data.json';
 import '../styles/Customer.css'; // Add your custom CSS file
 
 const CustomerDetail = () => {
   const { customerId } = useParams();
-  const customer = CustomerData.find((c) => c.customerId === customerId);
+  const [customer, setCustomer] = useState(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/customers/${customerId}`)
+      .then(response => response.json())
+      .then((data) => {
+        setCustomer(data);
+      })
+      .catch(error => console.log(error));
+  }, []);
 
   if (!customer) {
     return <div className="customer-not-found">Customer not found</div>;
