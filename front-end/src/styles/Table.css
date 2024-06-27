@@ -69,6 +69,7 @@ html, body {
 
 .ag-theme-quartz .ag-row-hover {
   background-color: #e9ecef !important; /* Light grey hover effect */
+  cursor: pointer; /* Change cursor on hover */
 }
 
 .ag-theme-quartz .ag-row-selected {
