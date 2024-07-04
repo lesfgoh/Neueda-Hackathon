@@ -346,7 +346,7 @@ const CustomerTable = () => {
           <label className="label">
             <span className="label-text">Customer ID</span>
           </label>
-          <input type="text" placeholder="Name" className="input input-bordered"
+          <input type="text" placeholder="Customer ID" className="input input-bordered"
                  value={newCustomer.customerId}
                  onChange={(e) => setNewCustomer({...newCustomer, customerId: e.target.value})} />
         </div>
