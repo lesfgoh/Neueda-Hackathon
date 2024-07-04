@@ -13,7 +13,7 @@ const CustomerTable = () => {
 
   const [newCustomer, setNewCustomer] = useState({
     name: '',
-    status: '',
+    status: 'inactive', // Default to 'Inactive'
     address: '',
     email: '',
     age: '',
@@ -262,7 +262,7 @@ const CustomerTable = () => {
           <label className="label cursor-pointer">
             <span className="label-text">Active</span>
             <input type="checkbox" className="checkbox"
-                   checked={selectedCustomer.status === "Active"}
+                   checked={selectedCustomer.status === "active"}
                    onChange={(e) => setSelectedCustomer({...selectedCustomer, status: e.target.checked ? "active" : "inactive"})} />
           </label>
         </div>
@@ -353,9 +353,9 @@ const CustomerTable = () => {
 
         <div className="form-control mt-3 mb-3">
           <label className="label cursor-pointer">
-            <span className="label-text">Status</span>
+            <span className="label-text">Active</span>
             <input type="checkbox" className="checkbox"
-                   checked={newCustomer.status === "Active"}
+                   checked={newCustomer.status === "active"}
                    onChange={(e) => setNewCustomer({...newCustomer, status: e.target.checked ? "active" : "inactive"})} />
           </label>
         </div>
